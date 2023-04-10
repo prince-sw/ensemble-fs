@@ -1,0 +1,14 @@
+dataset,model,fs_method,k,accuracy,fmeasure,precision,recall,roc
+shd,nb,lrs,12,0.8592592592592594
+chd,nb,lrs,12,0.8517241379310345
+vcd,rf,lrs,4,0.8258064516129032
+iris,svc,lrs,3,0.9733333333333334
+parkinsons,knn,lrs,6,0.9278947368421052
+cirrhosis,lr,lrs,11,0.5380371660859466
+diabetes,rf,lrs,7,0.7773069036226932
+heart_disease,nb,lrs,12,0.8517241379310345
+sonar,ab,lrs,9,0.7835714285714286
+stroke,lr,lrs,5,0.9576291616442912
+abalone,rf,nofs,8,0.8149392447764277
+wine,ab,lrs,2,0.8866884531590413
+breast,svc,lrs,20,0.982393483709273
