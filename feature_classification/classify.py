@@ -17,20 +17,21 @@ from observations.model_config import fs_methods, models
 
 scoring = {
     "accuracy": make_scorer(accuracy_score),
-    # "fmeasure": make_scorer(f1_score, average="weighted", zero_division=0),
-    # "precision": make_scorer(precision_score, average="weighted", zero_division=0),
-    # "recall": make_scorer(recall_score, average="weighted", zero_division=0),
-    # "roc": make_scorer(roc_auc_score, average="weighted", multi_class="ovr", needs_proba=True)
+    "fmeasure": make_scorer(f1_score, average="weighted", zero_division=0),
+    "precision": make_scorer(precision_score, average="weighted", zero_division=0),
+    "recall": make_scorer(recall_score, average="weighted", zero_division=0),
+    "roc": make_scorer(roc_auc_score, average="weighted", multi_class="ovr", needs_proba=True)
 }
 
 
 def get_score(results):
-    # ans = "{},{},{},{},{}\n".format(results["test_accuracy"].mean(),
-    #                                 results["test_fmeasure"].mean(),
-    #                                 results["test_precision"].mean(),
-    #                                 results["test_recall"].mean(),
-    #                                 results["test_roc"].mean())
-    ans = "{}\n".format(results["test_accuracy"].mean())
+    # print(results)
+    ans = "{},{},{},{},{}\n".format(results["test_accuracy"].mean(),
+                                    results["test_fmeasure"].mean(),
+                                    results["test_precision"].mean(),
+                                    results["test_recall"].mean(),
+                                    results["test_roc"].mean())
+    # ans = "{}\n".format(results["test_accuracy"].mean())
     return ans
 
 
@@ -71,7 +72,7 @@ def get_result(df, target, is_multiclass):
     results = {}
     for model in models:
         result = cross_validate(estimator=model_dict[model], X=df.drop(
-            target, axis=1), y=df[target], cv=10, scoring=scoring, return_train_score=True, verbose=0)
+            target, axis=1), y=df[target], cv=5, scoring=scoring, return_train_score=True, verbose=0)
         print("Fitting done with {}".format(model))
         results[model] = result
     return results
@@ -139,8 +140,8 @@ def classify_dataset(dataset):
 
     # classification
     file = open("./results/{}.txt".format(dataset["name"]), "w")
-    # file.write("model,fs_method,k,accuracy,fmeasure,precision,recall,roc\n")
-    file.write("model,fs_method,k,accuracy\n")
+    file.write("model,fs_method,k,accuracy,fmeasure,precision,recall,roc\n")
+    # file.write("model,fs_method,k,accuracy\n")
     print("Training models...")
     # get results for complete dataset
     print("Training for all columns")

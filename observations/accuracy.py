@@ -19,22 +19,24 @@ def save_figs(k, scores, fs_method, name):
 
 
 def save_accuracy_table_entry(file, dataset):
+    # print(dataset["name"])
     df = pd.read_csv("./results/{}.txt".format(dataset["name"]))
     row = df.query("accuracy == accuracy.max()").query("k == k.min()")
-    # write_str = "{},{},{},{},{},{},{},{},{}\n".format(dataset["name"],
-    #                                                   row["model"].iloc[0],
-    #                                                   row["fs_method"].iloc[0],
-    #                                                   row["k"].iloc[0],
-    #                                                   row["accuracy"].iloc[0],
-    #                                                   row["fmeasure"].iloc[0],
-    #                                                   row["precision"].iloc[0],
-    #                                                   row["recall"].iloc[0],
-    #                                                   row["roc"].iloc[0])
-    write_str = "{},{},{},{},{}\n".format(dataset["name"],
-                                          row["model"].iloc[0],
-                                          row["fs_method"].iloc[0],
-                                          row["k"].iloc[0],
-                                          row["accuracy"].iloc[0])
+    # print(row)
+    write_str = "{},{},{},{},{},{},{},{},{}\n".format(dataset["name"],
+                                                      row["model"].iloc[0],
+                                                      row["fs_method"].iloc[0],
+                                                      row["k"].iloc[0],
+                                                      row["accuracy"].iloc[0],
+                                                      row["fmeasure"].iloc[0],
+                                                      row["precision"].iloc[0],
+                                                      row["recall"].iloc[0],
+                                                      row["roc"].iloc[0])
+    # write_str = "{},{},{},{},{}\n".format(dataset["name"],
+    #                                       row["model"].iloc[0],
+    #                                       row["fs_method"].iloc[0],
+    #                                       row["k"].iloc[0],
+    #                                       row["accuracy"].iloc[0])
     file.write(write_str)
 
 
@@ -73,8 +75,32 @@ def save_acc_graphs():
 def save_acc_table():
     print("Saving Accuracy Table...")
     file = open("./tables/acc_table.txt", "w")
+    # file.write("\n")
     file.write(
         "dataset,model,fs_method,k,accuracy,fmeasure,precision,recall,roc\n")
     for dataset in data_files:
         save_accuracy_table_entry(file, dataset)
     file.close()
+
+
+def save_fs_table(iter):
+    print("Writing FS Table")
+    file = open("./tables/fs_table_{}.txt".format(iter), 'w')
+    file.write("dataset,model,k,accuracy,fmeasure,precision,recall,roc\n")
+    for fs in fs_methods:
+        file.write("{}\n".format(fs.upper()))
+        for dataset in data_files:
+            df = pd.read_csv("./results/{}.txt".format(dataset["name"]))
+            row = df.query("fs_method=='{}'".format(fs)).query(
+                "accuracy == accuracy.max()").query("k == k.min()")
+            # print(row)
+            write_str = "{},{},{},{},{},{},{},{}\n".format(dataset["name"],
+                                                           row["model"].iloc[0],
+                                                           row["k"].iloc[0],
+                                                           row["accuracy"].iloc[0],
+                                                           row["fmeasure"].iloc[0],
+                                                           row["precision"].iloc[0],
+                                                           row["recall"].iloc[0],
+                                                           row["roc"].iloc[0])
+            file.write(write_str)
+        file.write("\n\n")

@@ -148,7 +148,7 @@ def logistic_regression_selection(df_norm, label, k=-1):
 # mutual_info_selection,
 #               logistic_regression_selection, kendall_selection, chi2_selection,
 fs_methods = [mutual_info_selection, variance_selection, treebased_selection,
-              logistic_regression_selection, kendall_selection, chi2_selection, fisher_selection]
+              logistic_regression_selection, kendall_selection, fisher_selection]
 
 # List of feature selection methods used. These methods returns a list of top features in ascending order.
 
@@ -176,7 +176,7 @@ def ensemble_fs(df_norm, label, k):
 
 #     Putting the normalized scores of different fs methods in a dataframe to find the mean of each features.
     data = pd.concat(normalized_scores, axis=1)
-    aggregate = data.median(axis=1)
+    aggregate = data.mean(axis=1)
     result = pd.Series(data=aggregate.values,
                        index=aggregate.index).sort_values(ascending=False)
 
