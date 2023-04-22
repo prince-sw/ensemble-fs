@@ -9,6 +9,6 @@ fs_methods_heuristics = ['gen', 'ps', 'mrf', 'gr', 'sm']
 mm = ['nb', 'rf', 'knn', 'lr', 'gb', 'ab']
 fs = ['muin', 'lass', 'rfe', 'chi']
 
-fs_methods = ['lrs', 'tree', 'rfe', 'em', 'rfc', 'muin', 'emm']
+fs_methods = ['em', 'emm']
 
 models = mm

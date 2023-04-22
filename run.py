@@ -4,7 +4,7 @@ from observations.accuracy import save_acc_graphs, save_acc_table, save_fs_table
 from observations.heatmap import plot_heatmaps
 
 if __name__ == "__main__":
-    for i in range(1, 6):
+    for i in range(30, 31):
         print("\n\nIteration {}\n\n".format(i))
         for dataset in data_files:
             classify_dataset(dataset)
