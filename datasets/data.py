@@ -35,7 +35,7 @@ def drop_cols(df: pd.DataFrame, col_names):
 
 
 def scale_dataset(df: pd.DataFrame, no_scale):
-    scaler = StandardScaler()
+    scaler = MinMaxScaler()
     for col in df.columns:
         if col not in no_scale:
             df[[col]] = scaler.fit_transform(df[[col]])

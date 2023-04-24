@@ -35,7 +35,7 @@ heuristic_feature_selector_method = {
 def feature_selector(df, label, k):
     features_selected = {}
     for method in fs_methods:
-        print("Selecting Features with {}".format(method))
+        # print("Selecting Features with {}".format(method))
         features_selected[method] = feature_selector_method[method](
             df, label, k)
     return features_selected

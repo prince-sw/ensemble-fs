@@ -14,6 +14,8 @@ from datasets.data import clear_missing, encode_cols, drop_cols, scale_dataset
 from feature_selection.feature_selector import feature_selector
 from feature_selection.feature_selector import heuristic_features_selector
 from observations.model_config import fs_methods, models
+from tqdm import tqdm
+
 
 scoring = {
     "accuracy": make_scorer(accuracy_score),
@@ -73,7 +75,7 @@ def get_result(df, target, is_multiclass):
     for model in models:
         result = cross_validate(estimator=model_dict[model], X=df.drop(
             target, axis=1), y=df[target], cv=5, scoring=scoring, return_train_score=True, verbose=0)
-        print("Fitting done with {}".format(model))
+        # print("Fitting done with {}".format(model))
         results[model] = result
     return results
 
@@ -123,36 +125,36 @@ def get_result_split(df, target, is_multiclass):
     return results
 
 
-def classify_dataset(dataset):
+def classify_dataset(dataset, i):
     # read data
-    print("Reading dataset {}.csv...".format(dataset["name"]))
+    print("\nIn dataset {}.csv...".format(dataset["name"]))
     dataset_path = "./datasets/"+dataset["name"]+".csv"
     df = pd.read_csv(dataset_path, sep=dataset["sep"])
-    print("Reading finished... \n")
+    # print("Reading finished... \n")
 
     # preprocessing
-    print("Starting preprocessing... ")
+    # print("Starting preprocessing... ")
     df = drop_cols(df, dataset["drop_columns"])
     df = encode_cols(df, dataset["encode_columns"])
     df = clear_missing(df)
     df = scale_dataset(df, dataset["no_scale"])
-    print("Finished preprocessing... \n")
+    # print("Finished preprocessing... \n")
 
     # classification
-    file = open("./results/{}.txt".format(dataset["name"]), "w")
+    file = open("./results/{}_{}.txt".format(dataset["name"], i), "w")
     file.write("model,fs_method,k,accuracy,fmeasure,precision,recall,roc\n")
     # file.write("model,fs_method,k,accuracy\n")
     print("Training models...")
     # get results for complete dataset
-    print("Training for all columns")
+    # print("Training for all columns")
     results = get_result(df, dataset["target"], dataset['is_multiclass'])
-    print("Finished training... ")
-    print("Writing Results... ")
+    # print("Finished training... ")
+    # print("Writing Results... ")
     write_results(file, results, "nofs", k=len(df.columns)-1)
-    print("Finished writing Results... ")
+    # print("Finished writing Results... ")
 
     # run for every number of columns chosen
-    for k in range(1, len(df.columns)-1):
+    for k in tqdm(range(1, len(df.columns)-1), desc='Columns: '):
         # get selected features using every method for one k
         selected_features = feature_selector(
             df.drop(dataset["target"], axis=1), df[dataset["target"]], k)
@@ -167,9 +169,9 @@ def classify_dataset(dataset):
             results = get_result(
                 selected_df, dataset["target"], dataset['is_multiclass'])
             # write result for that k for that method
-            print(f"Writing Results for {method} and k={k}... ")
+            # print(f"Writing Results for {method} and k={k}... ")
             write_results(file, results, method, k=k)
-            print("Finished writing Results... ")
+            # print("Finished writing Results... ")
 
     # print("Starting with heuristic optimizers..")
     # selected_features = heuristic_features_selector(
