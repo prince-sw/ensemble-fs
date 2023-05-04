@@ -4,28 +4,28 @@ from feature_selection.IterativeLaplacianScore import IterativeLaplacianScore
 from FRUFS import FRUFS
 
 
-def laplacian_selection(df, k):
+def laplacian_selection(df, label, k):
     ls = LaplacianScore(df, k=k)
     ls.calculate_scores()
     lsfs = ls.selectKBest()
     return lsfs
 
 
-def cosine_selection(df, k):
+def cosine_selection(df, label, k):
     cs = CosineSimilarity(df, k=k)
     cs.calculate_scores()
     csfs = cs.selectKBest()
     return csfs
 
 
-def iterlaplacian_selection(df, k):
+def iterlaplacian_selection(df, label, k):
     ils = IterativeLaplacianScore(df, k=k)
     ils.calculate_scores()
     ilsfs = ils.selectKBest()
     return ilsfs
 
 
-def pairwise_corr_selection(df, k):
+def pairwise_corr_selection(df, label, k):
     corr = df.corr(method='pearson')
     removed_columns = []
     threshold = 0.75
@@ -40,7 +40,7 @@ def pairwise_corr_selection(df, k):
     return selected_cols[:min(k, len(df.columns))]
 
 
-def frufs_selection(df, k):
+def frufs_selection(df, label, k):
     model = FRUFS(verbose=0, k=k)
     model.fit(df)
     return list(model.columns_[:min(k, len(df.columns))])

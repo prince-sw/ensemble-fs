@@ -17,20 +17,20 @@ from observations.model_config import fs_methods, models
 
 scoring = {
     "accuracy": make_scorer(accuracy_score),
-    # "fmeasure": make_scorer(f1_score, average="weighted", zero_division=0),
-    # "precision": make_scorer(precision_score, average="weighted", zero_division=0),
-    # "recall": make_scorer(recall_score, average="weighted", zero_division=0),
-    # "roc": make_scorer(roc_auc_score, average="weighted", multi_class="ovr", needs_proba=True)
+    "fmeasure": make_scorer(f1_score, average="weighted", zero_division=0),
+    "precision": make_scorer(precision_score, average="weighted", zero_division=0),
+    "recall": make_scorer(recall_score, average="weighted", zero_division=0),
+    "roc": make_scorer(roc_auc_score, average="weighted", multi_class="ovr", needs_proba=True)
 }
 
 
 def get_score(results):
-    # ans = "{},{},{},{},{}\n".format(results["test_accuracy"].mean(),
-    #                                 results["test_fmeasure"].mean(),
-    #                                 results["test_precision"].mean(),
-    #                                 results["test_recall"].mean(),
-    #                                 results["test_roc"].mean())
-    ans = "{}\n".format(results["test_accuracy"].mean())
+    ans = "{},{},{},{},{}\n".format(results["test_accuracy"].mean(),
+                                    results["test_fmeasure"].mean(),
+                                    results["test_precision"].mean(),
+                                    results["test_recall"].mean(),
+                                    results["test_roc"].mean())
+    # ans = "{}\n".format(results["test_accuracy"].mean())
     return ans
 
 

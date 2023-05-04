@@ -1,22 +1,4 @@
 data_files = [
-    # {
-    #     "name": "GBC",
-    #     "drop_columns": [],
-    #     "encode_columns": [],
-    #     "target": "Grading",
-    #     "sep": ",",
-    #     "no_scale":['Grading'],
-    #     "is_multiclass": True
-    # }
-    # {
-    #     "name": "original",
-    #     "drop_columns": [],
-    #     "encode_columns": ["Label"],
-    #     "target": "Label",
-    #     "sep": ",",
-    #     "no_scale":['Label'],
-    #     "is_multiclass": True
-    # },
     {
         "name": "shd",
         "drop_columns": [],
@@ -35,15 +17,6 @@ data_files = [
         "no_scale":['condition', 'sex'],
         "is_multiclass": False
     },
-    # {
-    #     "name": "firstorder",
-    #     "drop_columns": [],
-    #     "encode_columns": ["Label"],
-    #     "target": "Label",
-    #     "sep": ",",
-    #     "no_scale":['Label'],
-    #     "is_multiclass": True
-    # },
     # {
     #     "name": "ilpd",
     #     "drop_columns": [],
