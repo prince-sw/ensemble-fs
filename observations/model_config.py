@@ -9,6 +9,7 @@ fs_methods_heuristics = ['gen', 'ps', 'mrf', 'gr', 'sm']
 mm = ['nb', 'rf', 'knn', 'lr', 'svc', 'gb', 'ab']
 fs = ['muin', 'lass', 'rfe', 'chi']
 
-fs_methods = ['lrs']
+fs_methods = ['corr', 'tree', 'var', 'lrs',
+                  'rfe', 'bor', 'lass', 'muin', 'chi', 'rfc', 'ulap', 'uilap', 'ucos', 'upcorr', 'ufrufs']
 
-models = mm
+models = models_all
