@@ -8,60 +8,60 @@ data_files = [
         "no_scale":['presence', 'sex'],
         "is_multiclass": False
     },
-    # {
-    #     "name": "chd",
-    #     "drop_columns": [],
-    #     "encode_columns": ['condition'],
-    #     "target": "condition",
-    #     "sep": ",",
-    #     "no_scale":['condition', 'sex'],
-    #     "is_multiclass": False
-    # },
-    # {
-    #     "name": "ilpd",
-    #     "drop_columns": [],
-    #     "encode_columns": ["a1", 'a10'],
-    #     "target": "a10",
-    #     "sep": ",",
-    #     "no_scale":['a1', 'a10'],
-    #     "is_multiclass":False
-    # },
-    # {
-    #     "name": "vcd",
-    #     "drop_columns": [],
-    #     "encode_columns": ['A6'],
-    #     "target": "A6",
-    #     "sep": ",",
-    #     "no_scale":['A6'],
-    #     "is_multiclass":False
-    # },
-    # {
-    #     "name": "lymph",
-    #     "drop_columns": [],
-    #     "encode_columns": ['a0'],
-    #     "target": "a0",
-    #     "sep": ",",
-    #     "no_scale":['a0'],
-    #     "is_multiclass":True
-    # },
-    # {
-    #     "name": "iono",
-    #     "drop_columns": ['a1'],
-    #     "encode_columns": ['a34'],
-    #     "target": "a34",
-    #     "sep": ",",
-    #     "no_scale":['a0', 'a1', 'a34'],
-    #     "is_multiclass":False
-    # },
-    # {
-    #     "name": "krkp",
-    #     "drop_columns": [],
-    #     "encode_columns": ['a36'],
-    #     "target": "a36",
-    #     "sep": ",",
-    #     "no_scale":['a0', 'a36', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a10''a11', 'a12', 'a13', 'a14', 'a15', 'a16', 'a17', 'a18', 'a19', 'a20', 'a21', 'a22', 'a23', 'a24', 'a25', 'a26', 'a27', 'a28', 'a29', 'a30', 'a31', 'a32', 'a33', 'a34', 'a35'],
-    #     "is_multiclass":False
-    # },
+    {
+        "name": "chd",
+        "drop_columns": [],
+        "encode_columns": ['condition'],
+        "target": "condition",
+        "sep": ",",
+        "no_scale":['condition', 'sex'],
+        "is_multiclass": False
+    },
+    {
+        "name": "ilpd",
+        "drop_columns": [],
+        "encode_columns": ["a1", 'a10'],
+        "target": "a10",
+        "sep": ",",
+        "no_scale":['a1', 'a10'],
+        "is_multiclass":False
+    },
+    {
+        "name": "vcd",
+        "drop_columns": [],
+        "encode_columns": ['A6'],
+        "target": "A6",
+        "sep": ",",
+        "no_scale":['A6'],
+        "is_multiclass":False
+    },
+    {
+        "name": "lymph",
+        "drop_columns": [],
+        "encode_columns": ['a0'],
+        "target": "a0",
+        "sep": ",",
+        "no_scale":['a0'],
+        "is_multiclass":True
+    },
+    {
+        "name": "iono",
+        "drop_columns": ['a1'],
+        "encode_columns": ['a34'],
+        "target": "a34",
+        "sep": ",",
+        "no_scale":['a0', 'a1', 'a34'],
+        "is_multiclass":False
+    },
+    {
+        "name": "krkp",
+        "drop_columns": [],
+        "encode_columns": ['a36'],
+        "target": "a36",
+        "sep": ",",
+        "no_scale":['a0', 'a36', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a10''a11', 'a12', 'a13', 'a14', 'a15', 'a16', 'a17', 'a18', 'a19', 'a20', 'a21', 'a22', 'a23', 'a24', 'a25', 'a26', 'a27', 'a28', 'a29', 'a30', 'a31', 'a32', 'a33', 'a34', 'a35'],
+        "is_multiclass":False
+    },
     # {
     #     "name": "iris",
     #     "drop_columns": ["Id"],
@@ -72,7 +72,7 @@ data_files = [
     #     "is_multiclass": True
     # },
     # {
-    
+
     #     "name": "parkinsons",
     #     "drop_columns": [],
     #     "encode_columns": ["name", 'status'],
@@ -85,7 +85,7 @@ data_files = [
     #     "name": "cirrhosis",
     #     "drop_columns": ["ID"],
     #     "encode_columns": ["Drug", "Status", "Sex", "Ascites", "Hepatomegaly", "Spiders", "Edema", "Stage"],
-    #     "target": "Stage", 
+    #     "target": "Stage",
     #     "sep": ",",
     #     "no_scale":["Stage", "Drug", "Status", "Sex", "Ascites", "Hepatomegaly", "Spiders", "Edema"],
     #     "is_multiclass":True

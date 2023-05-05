@@ -10,5 +10,5 @@ if __name__ == "__main__":
     print("Plotting Accuracy Graphs")
     save_acc_graphs()
     save_acc_table()
-    # plot_heatmaps()
+    plot_heatmaps()
     print("Exiting...\n")
