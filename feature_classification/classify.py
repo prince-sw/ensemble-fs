@@ -71,7 +71,7 @@ def get_result(df, target, is_multiclass):
     results = {}
     for model in models:
         result = cross_validate(estimator=model_dict[model], X=df.drop(
-            target, axis=1), y=df[target], cv=10, scoring=scoring, return_train_score=True, verbose=0)
+            target, axis=1), y=df[target], cv=5, scoring=scoring, return_train_score=True, verbose=0)
         print("Fitting done with {}".format(model))
         results[model] = result
     return results

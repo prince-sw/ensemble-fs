@@ -28,6 +28,47 @@ def variance_selection(df_norm, label, k=-1):
     return sorted_features
 
 
+def fisher_selection(df_norm, label, k=-1):
+
+    X = df_norm.values
+    y = label.values
+
+    # Compute Fisher score
+    score = fisher_score.fisher_score(X, y)
+
+    # Convert score array to pandas series and sort in descending order
+    score_series = pd.Series(score, index=df_norm.columns)
+    score_series.sort_values(ascending=False, inplace=True)
+
+    return score_series
+
+
+def treebased_selection(df_norm, label, k=-1):
+    clf = ExtraTreesClassifier(n_estimators=50)
+    clf = clf.fit(df_norm, label)
+
+    # Get feature importances and create pandas series with feature names as index
+    feature_importances = pd.Series(
+        clf.feature_importances_, index=df_norm.columns)
+
+    # Sort the series by feature importances in descending order
+    sorted_features = feature_importances.sort_values(ascending=False)
+
+    return sorted_features
+
+
+def anova_feature_selection(df_norm, label, k=-1):
+    # perform ANOVA feature selection
+    f_scores, p_values = f_classif(df_norm, label)
+    # create a Pandas Series of ANOVA scores
+    anova_scores = pd.Series(f_scores, index=df_norm.columns)
+
+    # sort the ANOVA scores in descending order
+    sorted_scores = anova_scores.sort_values(ascending=False)
+
+    return sorted_scores
+
+
 def mutual_info_selection(df_norm, label, k=-1):
     # Compute mutual information scores
     scores = mutual_info_classif(df_norm, label)
@@ -54,6 +95,28 @@ def randomforest_Selection(df_norm, label, k=-1):
     return sorted_features
 
 
+def kendall_selection(df, label, k=-1):
+    kendall_scores = {}
+    for col in df.columns:
+        kendall_corr, _ = kendalltau(df[col], label)
+        kendall_scores[col] = kendall_corr
+    kendall_scores = pd.Series(kendall_scores).sort_values(ascending=False)
+    return kendall_scores
+
+
+def chi2_selection(X, y, k=-1):
+    # perform chi2 feature selection
+    chi2_scores, p_values = chi2(X, y)
+
+    # create a Pandas Series of chi2 scores
+    chi2_scores = pd.Series(chi2_scores, index=X.columns)
+
+    # sort the chi2 scores in descending order
+    sorted_scores = chi2_scores.sort_values(ascending=False)
+
+    return sorted_scores
+
+
 def logistic_regression_selection(df_norm, label, k=-1):
     logreg = LogisticRegression(
         C=1, penalty='l2', max_iter=10000, solver='liblinear', multi_class='auto')
@@ -68,26 +131,24 @@ def logistic_regression_selection(df_norm, label, k=-1):
     return sorted_scores
 
 
-def corr_selection(df_norm, label, k=-1):
-    featureTargetCorr = []
-    for col in df_norm:
-        featureTargetCorr.append(
-            pearsonr(df_norm[col].astype('float64'), label.astype('float64'))[0])
-    score = pd.Series(np.absolute(featureTargetCorr))
-    score.index = df_norm.columns
-    score.sort_values(ascending=False, inplace=True)
-    if (k == -1):
-        selected_features = score
-    else:
-        selected_features = score[:min(k, len(df_norm.columns))]
-    top_k_features = list(selected_features.index)
-    return selected_features
-
-
+# def corr_selection(df_norm, label, k=-1):
+#     featureTargetCorr = []
+#     for col in df_norm:
+#         featureTargetCorr.append(
+#             pearsonr(df_norm[col].astype('float64'), label.astype('float64'))[0])
+#     score = pd.Series(np.absolute(featureTargetCorr))
+#     score.index = df_norm.columns
+#     score.sort_values(ascending=False, inplace=True)
+#     if (k == -1):
+#         selected_features = score
+#     else:
+#         selected_features = score[:min(k, len(df_norm.columns))]
+#     top_k_features = list(selected_features.index)
+#     return selected_features
 # mutual_info_selection,
 #               logistic_regression_selection, kendall_selection, chi2_selection,
-fs_methods = [mutual_info_selection, variance_selection,
-              logistic_regression_selection, randomforest_Selection, corr_selection]
+fs_methods = [mutual_info_selection, variance_selection, treebased_selection,
+              logistic_regression_selection, kendall_selection, fisher_selection]
 
 # List of feature selection methods used. These methods returns a list of top features in ascending order.
 
@@ -103,7 +164,7 @@ def create_features_list(res):
     return sorted_features_list
 
 
-def ensemble_fs(df_norm, label, k):
+def ensemblemd_fs(df_norm, label, k):
     scores = []
     normalized_scores = []
 

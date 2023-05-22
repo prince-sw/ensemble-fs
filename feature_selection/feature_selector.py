@@ -19,7 +19,8 @@ feature_selector_method = {
     "ucos": cosine_selection,
     "upcorr": pairwise_corr_selection,
     "ufrufs": frufs_selection,
-    "em": ensemble_selection
+    "em": ensemble_selection,
+    "emm": ensemblemd_fs
 }
 
 heuristic_feature_selector_method = {

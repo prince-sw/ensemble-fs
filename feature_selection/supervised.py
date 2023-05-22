@@ -11,6 +11,7 @@ from sklearn.model_selection import train_test_split
 from scipy.stats import pearsonr
 from feature_selection.unsupervised import *
 from feature_selection.Ensemble import ensemble_fs
+from feature_selection.EnsembleMedian import ensemblemd_fs
 
 # 1
 
@@ -150,3 +151,7 @@ def corr_selection(df_norm, label, k):
 
 def ensemble_selection(df_norm, label, k):
     return ensemble_fs(df_norm, label, k)
+
+
+def ensemblemd_selection(df_norm, label, k):
+    return ensemblemd_fs(df_norm, label, k)
