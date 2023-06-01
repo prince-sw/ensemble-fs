@@ -10,7 +10,7 @@ from sklearn.feature_selection import mutual_info_classif
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_selection import chi2
 from scipy.stats import kendalltau
-from skfeature.function.similarity_based import fisher_score
+# from skfeature.function.similarity_based import fisher_score
 from sklearn.feature_selection import VarianceThreshold
 from sklearn.ensemble import ExtraTreesClassifier
 
@@ -103,7 +103,7 @@ def create_features_list(res):
     return sorted_features_list
 
 
-def ensemble_fs(df_norm, label, k):
+def ensemble_fs(df_norm, label):
     scores = []
     normalized_scores = []
 
@@ -120,4 +120,4 @@ def ensemble_fs(df_norm, label, k):
                        index=aggregate.index).sort_values(ascending=False)
 
     sorted_features_list = create_features_list(result)
-    return sorted_features_list[k-1]
+    return sorted_features_list

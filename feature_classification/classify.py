@@ -41,12 +41,7 @@ def write_results(file, results, fs_method, k):
 
 
 def get_result(df, target, is_multiclass):
-    model1 = None
-    if is_multiclass:
-        model1 = LogisticRegression(
-            max_iter=1000000, multi_class="multinomial")
-    else:
-        model1 = LogisticRegression(max_iter=1000000)
+    model1 = LogisticRegression(max_iter=1000000)
     model2 = GaussianNB()
     model3 = KNeighborsClassifier()
     model4 = RandomForestClassifier()
@@ -140,7 +135,7 @@ def classify_dataset(dataset):
     # classification
     file = open("./results/{}.txt".format(dataset["name"]), "w")
     # file.write("model,fs_method,k,accuracy,fmeasure,precision,recall,roc\n")
-    file.write("model,fs_method,k,accuracy\n")
+    file.write("model,fs_method,k,accuracy,fmeasure,precision,recall,roc\n")
     print("Training models...")
     # get results for complete dataset
     print("Training for all columns")
@@ -151,7 +146,7 @@ def classify_dataset(dataset):
     print("Finished writing Results... ")
 
     # run for every number of columns chosen
-    for k in range(1, len(df.columns)-1):
+    for k in range(1, len(df.columns)+1):
         # get selected features using every method for one k
         selected_features = feature_selector(
             df.drop(dataset["target"], axis=1), df[dataset["target"]], k)
