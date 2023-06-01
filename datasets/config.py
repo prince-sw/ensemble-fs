@@ -36,15 +36,15 @@ data_files = [
     #         "no_scale":['a1', 'a10'],
     #         "is_multiclass":False
     #     },
-    {
-        "name": "vcd",
-        "drop_columns": [],
-        "encode_columns": ['A6'],
-        "target": "A6",
-        "sep": ",",
-        "no_scale":['A6'],
-        "is_multiclass":False
-    },
+    # {
+    #     "name": "vcd",
+    #     "drop_columns": [],
+    #     "encode_columns": ['A6'],
+    #     "target": "A6",
+    #     "sep": ",",
+    #     "no_scale":['A6'],
+    #     "is_multiclass":False
+    # },
     #     # {
     #     #     "name": "lymph",
     #     #     "drop_columns": [],
@@ -82,15 +82,15 @@ data_files = [
     #         "no_scale": ["Species"],
     #         "is_multiclass": True
     #     },
-    {
-        "name": "parkinsons",
-        "drop_columns": [],
-        "encode_columns": ["name", 'status'],
-        "target": "status",
-        "sep": ",",
-        "no_scale":["status"],
-        "is_multiclass":False
-    },
+    # {
+    #     "name": "parkinsons",
+    #     "drop_columns": [],
+    #     "encode_columns": ["name", 'status'],
+    #     "target": "status",
+    #     "sep": ",",
+    #     "no_scale":["status"],
+    #     "is_multiclass":False
+    # },
     #     {
     #         "name": "cirrhosis",
     #         "drop_columns": ["ID"],

@@ -146,7 +146,7 @@ def classify_dataset(dataset):
     print("Finished writing Results... ")
 
     # run for every number of columns chosen
-    for k in range(1, len(df.columns)+1):
+    for k in range(1, len(df.columns)-1):
         # get selected features using every method for one k
         selected_features = feature_selector(
             df.drop(dataset["target"], axis=1), df[dataset["target"]], k)

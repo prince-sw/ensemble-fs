@@ -12,6 +12,6 @@ fs = ['muin', 'lass', 'rfe', 'chi']
 # fs_methods = ['corr', 'tree', 'var', 'lrs',
 #               'rfe', 'bor', 'lass', 'muin', 'chi', 'rfc', 'ulap', 'uilap', 'ucos', 'upcorr', 'ufrufs']
 
-fs_methods = ['em']
+fs_methods = ['emm']
 
 models = models_all
