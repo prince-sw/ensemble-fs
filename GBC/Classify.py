@@ -30,10 +30,10 @@ def get_result(df, target):
 
 
 def get_models():
-    model1 = LogisticRegression(penalty='l1', solver='liblinear')
+    model1 = LogisticRegression(solver='liblinear')
     model2 = GaussianNB()
-    model3 = KNeighborsClassifier(leaf_size=50)
-    model4 = RandomForestClassifier(n_estimators=10)
+    model3 = KNeighborsClassifier()
+    model4 = RandomForestClassifier()
     model5 = DecisionTreeClassifier()
     model6 = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1)
     model7 = AdaBoostClassifier(n_estimators=100, learning_rate=0.1)
@@ -46,15 +46,15 @@ def get_models():
 
 
     model_dict = {
-        # "lr": model1,
-        # "nb": model2,
-        # "knn": model3,
+        "lr": model1,
+        "nb": model2,
+        "knn": model3,
         "rf": model4,
-        # "dt": model5,
-        # "gb": model6,
-        # "ab": model7,
-        # "svc": model8,
-        # "ri": model9,
-        # "xgb": model10,
+        "dt": model5,
+        "gb": model6,
+        "ab": model7,
+        "svc": model8,
+        "ri": model9,
+        "xgb": model10,
     }
     return model_dict

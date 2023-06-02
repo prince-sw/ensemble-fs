@@ -16,7 +16,7 @@ from sklearn.ensemble import ExtraTreesClassifier
 
 
 def variance_selection(df_norm, label, k=-1):
-    thresholder = VarianceThreshold(threshold=.03)
+    thresholder = VarianceThreshold(threshold=.01)
     transformed_df = thresholder.fit_transform(df_norm)
 
     # Get variances and create pandas series with feature names as index
