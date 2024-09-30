@@ -41,7 +41,7 @@ We have used ten publicly available datasets for this purpose.
 10. Abalone
 
 ## Results:
-Two screenshots of the obtained results are given below.
+Sample of result obtained is given below:
 
 ![12](https://user-images.githubusercontent.com/108113078/211331043-95bd275a-a2bf-4658-966a-c25df14eaeb7.png)
 
